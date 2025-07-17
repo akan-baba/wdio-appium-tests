@@ -1,0 +1,30 @@
+trigger:
+- none   # Manual trigger only
+
+pool:
+  name: Default  # Change to your local agent pool name if different
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'
+  displayName: 'Install Node.js 18.x'
+
+- script: |
+    npm ci
+  displayName: 'Install npm dependencies'
+
+- script: |
+    npx wdio run wdio.conf.js
+  displayName: 'Run WebdriverIO Appium Tests'
+
+- script: |
+    npx allure generate allure-results --clean -o allure-report
+  displayName: 'Generate Allure Report'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'allure-report'
+    ArtifactName: 'AllureReport'
+    publishLocation: 'Container'
+  displayName: 'Publish Allure Report Artifact'
