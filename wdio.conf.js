@@ -10,7 +10,7 @@ export const config = {
     // 'path/to/excluded/files'
   ],
 
-  maxInstances: 10,
+  maxInstances: 1,
 
   capabilities: [
     {
@@ -18,10 +18,10 @@ export const config = {
     "appium:deviceName": "RF8N21N921L",
     "appium:udid": "RF8N21N921L",
     "appium:automationName": "UiAutomator2",
-    "appium:appPackage": "com.webkul.bagisto.mobikul",
-    "appium:appActivity": "webkul.bagisto_app_demo.MainActivity",
+    "appium:appPackage": "com.nopcommerce.nopcommerce_mobile",
+    "appium:appActivity": "com.nopcommerce.nopcommerce_mobile.MainActivity",
     "appium:noReset": false,
-    "appium:dontStopAppOnReset": true,
+    "appium:fullReset": false,
     "appium:appWaitActivity": "*",
     "appium:autoGrantPermissions": true,
     "appium:appWaitDuration": 30000,
@@ -34,7 +34,13 @@ export const config = {
   waitforTimeout: 10000,
   connectionRetryTimeout: 120000,
   connectionRetryCount: 3,
-  services: ["appium"],
+  services: [['appium', {
+    args: {
+      port: 4723,
+      relaxedSecurity: true,
+    },
+    command: 'npx',
+  }]],
   framework: "mocha",
 
   reporters: ["spec", "junit", ["allure", { 
@@ -123,6 +129,11 @@ export const config = {
     if (!passed) {
       await browser.takeScreenshot();
     }
+  },
+
+  beforeSession: async function () {
+    console.log('🔁 Restarting Appium session...');
+    await browser.pause(1000);
   },
 
   /**

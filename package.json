@@ -16,7 +16,9 @@
     "wdio-wait-for": "^3.1.0"
   },
   "scripts": {
-    "test:allure": "npx wdio run wdio.conf.js && npx allure generate allure-results --clean -o allure-report && npx allure open allure-report"
+    
+    "test:allure": "npx wdio run wdio.conf.js && npm run allure:report",
+    "allure:report": "npx allure generate allure-results --clean && npx allure open"
   },
   "dependencies": {
     "appium": "^2.19.0"
