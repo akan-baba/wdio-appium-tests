@@ -17,6 +17,8 @@
 
 ## 🛠️ Prerequisites
 
+* Install nopcommerce app from Play Store on emulator or a physical device 
+
 * Node.js >= 18.x
 * Java >= 11.x
 * Appium Server installed globally:
@@ -24,7 +26,7 @@
   ```bash
   npm install -g appium
   ```
-* Android SDK & Emulator / Real Device connected
+* Android SDK & Emulator / Real Device connected to Vysor
 * WebdriverIO CLI installed globally (optional):
 
   ```bash
