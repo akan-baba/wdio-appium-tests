@@ -1,4 +1,10 @@
+import { userlogin } from './utils/customCommands.js';
+
 export const config = {
+  before: function () {
+    userlogin(); // Register the custom command when the browser is available
+  },
+
   runner: "local",
   hostname: "localhost",
   port: 4723,

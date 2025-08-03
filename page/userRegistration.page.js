@@ -9,7 +9,8 @@ export class UserRegistration {
       email:'(//android.widget.EditText)[3]',
       password:'//android.view.View[@content-desc="Password"]/android.widget.EditText[1]',
       confirmPwd:'//android.view.View[@content-desc="Password"]/android.widget.EditText[2]',
-      registerBtn: '//android.widget.Button[@content-desc="Register"]'
+      registerBtn: '//android.widget.Button[@content-desc="Register"]',
+      logOutButton:'//android.widget.Button[@content-desc="Log out"]'
 
     }
 
@@ -21,6 +22,7 @@ export class UserRegistration {
     async enterPassword() {await $(this.appSelectors.password)}
     async enterConfirmPwd() {await $(this.appSelectors.confirmPwd)}
     async clickRegBtn() {await $(this.appSelectors.registerBtn)}
+    async clickLogOutBtn() {await $(this.appSelectors.logOutButton)}
     
 
   

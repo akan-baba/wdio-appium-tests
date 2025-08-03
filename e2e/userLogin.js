@@ -7,7 +7,7 @@ describe('User Login', () => {
         await driver.terminateApp("com.nopcommerce.nopcommerce_mobile");
         await driver.activateApp("com.nopcommerce.nopcommerce_mobile");
       })
-    it('Login Page', async () => {
+    it('User logs in with valid credentials', async () => {
         await $(loginPage.appSelectors.accountButton).click()
         await $(loginPage.appSelectors.loginButton).click()
         await $(loginPage.appSelectors.email).click()
@@ -25,7 +25,7 @@ describe('User Login', () => {
         
     });
 
-    it('should show error for incorrect login', async () => {
+    it('User logs in with incorrect invalid email', async () => {
         await driver.pause(2000)
         await $(loginPage.appSelectors.accountButton).click()
         await $(loginPage.appSelectors.loginButton).click()
@@ -41,9 +41,22 @@ describe('User Login', () => {
         await driver.pause(2000)
         const errorElement2 = await $('~Email is not valid');
         await expect(errorElement2).toBeDisplayed()
-
-    
+ 
        
+      });
+
+      it('User logs in with incorrect details',async () => {
+        await driver.pause(2000)
+        await $(loginPage.appSelectors.accountButton).click()
+        await $(loginPage.appSelectors.loginButton).click()
+        await $(loginPage.appSelectors.email).click()
+        await $(loginPage.appSelectors.email).setValue('Joe@ao');
+        await $(loginPage.appSelectors.password).click()
+        await $(loginPage.appSelectors.password).setValue('123')
+        await $(loginPage.appSelectors.loginBtn).click()
+        const okBtn = await $('~OK');
+        const errorElement1 = await $('~Username or password is incorrect');
+        await expect(errorElement1).toBeDisplayed()
       });
       
     

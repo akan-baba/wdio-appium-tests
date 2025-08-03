@@ -17,8 +17,7 @@ export class UserLogin {
     async clickLoginBtn() {await $(this.appSelectors.loginBtn)}
     async clickLogOutBtn() {await $(this.appSelectors.logOutButton)}
 
-    
-    
+     
 
   
   }
